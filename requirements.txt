@@ -17,3 +17,7 @@ alembic==1.13.3
 # log
 structlog==24.4.0
 stackprinter==0.2.12
+
+# encription:
+bcrypt==4.2.1
+jwt==1.3.1
