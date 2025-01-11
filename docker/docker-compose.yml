@@ -4,6 +4,9 @@ networks:
   default:
     name: social-network
 
+x-environment: &default-environment
+  - TZ=UTC
+
 services:
 
   backend:
@@ -30,7 +33,7 @@ services:
     env_file:
       - ../.env
     ports:
-      - "6432:6432"
+      - "5432:5432"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 15s
@@ -38,6 +41,7 @@ services:
       retries: 15
     volumes:
       - pgdatasocialnetwork:/var/lib/postgresql/data
+      - ./init_scripts:/docker-entrypoint-initdb.d
 
 
 volumes:
