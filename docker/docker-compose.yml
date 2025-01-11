@@ -1,0 +1,44 @@
+version: '3.7'
+
+networks:
+  default:
+    name: social-network
+
+services:
+
+  backend:
+    build:
+      context: .././
+    container_name: backend
+    env_file:
+      - ../.env
+    ports:
+      - "8000:80"
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
+      interval: 15s
+      timeout: 2s
+      retries: 15
+
+
+  postgres_db:
+    image: postgres:17.0
+    container_name: postgres_db
+    env_file:
+      - ../.env
+    ports:
+      - "6432:6432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 15s
+      timeout: 2s
+      retries: 15
+    volumes:
+      - pgdatasocialnetwork:/var/lib/postgresql/data
+
+
+volumes:
+  pgdatasocialnetwork:

@@ -1,0 +1,19 @@
+# web
+fastapi==0.115.0
+fastapi-offline==1.7.2
+uvicorn[standard]==0.30.6
+
+# validation, config
+pydantic==2.9.2
+pydantic-settings==2.5.2
+python-dotenv==1.0.1
+
+# db
+asyncpg==0.29.0
+SQLAlchemy[asyncio]==2.0.36
+SQLAlchemy-Utils==0.41.2
+alembic==1.13.3
+
+# log
+structlog==24.4.0
+stackprinter==0.2.12
