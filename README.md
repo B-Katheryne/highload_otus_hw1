@@ -1,4 +1,3 @@
-```markdown
 # How to Start the Service
 
 ## Using Docker
@@ -17,5 +16,4 @@
    ./start.sh
    ```
 2. **Note**: It is assumed that the database has already been created and is accessible using the `DATABASE_URL` specified in the `.env` file.
-```
     
