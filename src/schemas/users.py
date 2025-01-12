@@ -11,8 +11,10 @@ class Token(BaseModel):
 class UserId(BaseModel):
     id: UUID
 
+
 class Login(BaseModel):
     login: str
+
 
 class UserPassword(BaseModel):
     password: str
@@ -34,5 +36,9 @@ class RegistrationInfo(Login, UserPassword):
     birthdate: date | None = None
 
 
-class AuthInfo(Login, UserPassword):
+class AuthInfoIn(Login, UserPassword):
+    pass
+
+
+class AuthInfoOut(Token, UserId):
     pass

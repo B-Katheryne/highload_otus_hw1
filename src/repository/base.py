@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncSession
+
 from src.db.base import Base
 
 

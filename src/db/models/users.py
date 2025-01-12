@@ -1,4 +1,5 @@
 import uuid
+
 from sqlalchemy import Column, Date, String
 from sqlalchemy_utils import UUIDType
 

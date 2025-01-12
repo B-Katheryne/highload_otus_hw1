@@ -1,27 +1,22 @@
 from uuid import UUID
-from fastapi import APIRouter, status
-from src.schemas.users import Token, UserProfileInfo, RegistrationInfo, AuthInfo
-from src.dependency.service import UserServiceDependency
 
-router = APIRouter(
-    prefix="/users", tags=["users"], responses={404: {"description": "Not found"}}
-)
+from fastapi import APIRouter, status
+
+from src.dependency.service import UserServiceDependency
+from src.schemas.users import AuthInfoIn, AuthInfoOut, RegistrationInfo, UserProfileInfo
+
+router = APIRouter(prefix="/users", tags=["users"], responses={404: {"description": "Not found"}})
 
 
 @router.post(
-    "/register",
-    response_model=UserProfileInfo,
-    status_code=status.HTTP_201_CREATED,
-    summary="Регистрация пользователя",
+    "/register", response_model=UserProfileInfo, status_code=status.HTTP_201_CREATED, summary="Регистрация пользователя"
 )
-async def register(
-    user_service: UserServiceDependency, registration_info: RegistrationInfo
-):
+async def register(user_service: UserServiceDependency, registration_info: RegistrationInfo):
     return await user_service.register(registration_info=registration_info)
 
 
-@router.post("/login", response_model=Token, summary="Авторизация пользователя")
-async def auth(user_service: UserServiceDependency, auth_info: AuthInfo):
+@router.post("/login", response_model=AuthInfoOut, summary="Авторизация пользователя")
+async def auth(user_service: UserServiceDependency, auth_info: AuthInfoIn):
     return await user_service.auth(auth_info=auth_info)
 
 

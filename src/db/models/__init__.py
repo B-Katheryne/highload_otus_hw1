@@ -1,1 +1,1 @@
-from src.db.models.users import *
+from src.db.models.users import *  # noqa: F403
